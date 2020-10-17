@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+   http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+
+  <resource-ref>
+    <description>Database for beauty salon</description>
+    <res-ref-name>jdbc/beautySalon</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
+
+  <resource-ref>
+    <description>Beauty salon mail for comment</description>
+    <res-ref-name>mail/Session</res-ref-name>
+    <res-type>javax.mail.Session</res-type>
+    <res-auth>Container</res-auth>
+    <res-sharing-scope>Shareable</res-sharing-scope>
+  </resource-ref>
+
+  <jsp-config>
+    <taglib>
+      <taglib-uri>/WEB-INF/CustomTag</taglib-uri>
+      <taglib-location>/WEB-INF/CustomTag.tld</taglib-location>
+    </taglib>
+  </jsp-config>
+
+  <display-name>BeautySalon</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+  <servlet>
+    <servlet-name>FrontController</servlet-name>
+    <servlet-class>com.epam.FrontController</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>FrontController</servlet-name>
+    <url-pattern>/controller</url-pattern>
+  </servlet-mapping>
+
+  <filter>
+    <filter-name>AccessFilter</filter-name>
+    <filter-class>com.epam.filters.AccessFilter</filter-class>
+    <init-param>
+      <param-name>administrator</param-name>
+      <param-value>administratorPage</param-value>
+    </init-param>
+    <init-param>
+      <param-name>master</param-name>
+      <param-value>masterPage</param-value>
+    </init-param>
+    <init-param>
+      <param-name>client</param-name>
+      <param-value>booking clientPage</param-value>
+    </init-param>
+    <init-param>
+      <param-name>common</param-name>
+      <param-value>logout noCommand language login registration priceList timetable</param-value>
+    </init-param>
+    <init-param>
+      <param-name>out-of-control</param-name>
+      <param-value>login</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>AccessFilter</filter-name>
+    <servlet-name>FrontController</servlet-name>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>EncodingFilter</filter-name>
+    <filter-class>com.epam.filters.EncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>EncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+    <servlet-name>FrontController</servlet-name>
+  </filter-mapping>
+
+  <error-page>
+    <exception-type>java.lang.Throwable</exception-type>
+    <location>/WEB-INF/jsp/connectionError.jsp</location>
+  </error-page>
+</web-app>
+

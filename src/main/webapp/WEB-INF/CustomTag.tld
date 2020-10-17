@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+    <description>Custom Tag for date</description>
+    <tlib-version>2.1</tlib-version>
+    <short-name>formatDate</short-name>
+    <uri>/WEB-INF/patientCustomTag</uri>
+    <tag>
+        <description>Tag change date format</description>
+        <name>date</name>
+        <tag-class>com.epam.CustomTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>date</description>
+            <name>date</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.sql.Date</type>
+        </attribute>
+    </tag>
+</taglib>

@@ -1,0 +1,20 @@
+<Context>
+
+    <Resource name="jdbc/beautySalon"
+              auth="Container"
+              type="javax.sql.DataSource"
+              maxActive="100"
+              maxIdle="30"
+              defaultAutoCommit="true"
+              maxWait="10000"
+              username="root"
+              password="root"
+              driverClassName="com.mysql.cj.jdbc.Driver"
+              url="jdbc:mysql://localhost:3306/beauty_salon?autoReconnect=true&amp;useSSL=false&amp;allowPublicKeyRetrieval=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />
+
+    <Resource name="mail/Session" auth="Container" type="javax.mail.Session"
+              mail.transport.protocol="smtp" mail.smtp.host="smtp.gmail.com"
+              mail.smtp.starttls.enable="true" mail.smtp.port="587"
+              mail.smtp.user="mail.beauty.salon.risen@gmail.com" mail.smtp.auth="true"
+              password="mvgwwtemirelwhzt" mail.smtp.ssl.trust="smtp.gmail.com" />
+</Context>
