@@ -25,17 +25,32 @@ public class AdministratorTimetableManagerImpl implements AdministratorTimetable
 
     @Override
     public List<Timetable> getTimetableWithBookingByDate(Date date, int start, int limit) throws DBException {
-        return administratorTimetableDao.getTimetableWithBookingByDate(date, start, limit);
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            return administratorTimetableDao.getTimetableWithBookingByDate(connection, date, start, limit);
+        } finally {
+            close(connection);
+        }
     }
 
     @Override
     public int getTimetableWithBookingByDateCount(Date date) throws DBException {
-        return administratorTimetableDao.getTimetableWithBookingByDateCount(date);
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            return administratorTimetableDao.getTimetableWithBookingByDateCount(connection, date);
+        } finally {
+            close(connection);
+        }
     }
 
     @Override
     public boolean setBookingPaid(int bookingId) {
-        return administratorTimetableDao.setBookingPaid(bookingId);
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            return administratorTimetableDao.setBookingPaid(connection, bookingId);
+        } finally {
+            close(connection);
+        }
     }
 
     @Override
@@ -64,7 +79,12 @@ public class AdministratorTimetableManagerImpl implements AdministratorTimetable
 
     @Override
     public List<Timetable> getMasterFreeTimetableByDate(Date date, int masterId) throws DBException {
-        return administratorTimetableDao.getMasterFreeTimetableByDate(date, masterId);
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            return administratorTimetableDao.getMasterFreeTimetableByDate(connection, date, masterId);
+        } finally {
+            close(connection);
+        }
     }
 
     @Override

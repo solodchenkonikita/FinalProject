@@ -4,7 +4,6 @@ import com.epam.dao.UserDao;
 import com.epam.entity.User;
 import com.epam.exception.DBException;
 import com.epam.exception.Messages;
-import com.epam.util.ConnectionPool;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -33,11 +32,8 @@ public class UserDaoImpl implements UserDao {
                     "LEFT JOIN beauty_salon.user ON booking.client_id=user.id " +
                     "WHERE date = ? AND booking_id IS NOT NULL ";
 
-    private Connection connection;
-
     @Override
-    public void addUser(User user) throws DBException {
-        connection = ConnectionPool.getInstance().getConnection();
+    public void addUser(Connection connection, User user) throws DBException {
         PreparedStatement ps = null;
         try {
             ps = connection.prepareStatement(SQL_ADD_USER);
@@ -53,14 +49,12 @@ public class UserDaoImpl implements UserDao {
             throw new DBException(Messages.ERR_CANNOT_ADD_USER);
         } finally {
             close(ps);
-            close(connection);
         }
     }
 
     @Override
-    public User findUserByEmail(String email) throws DBException {
+    public User findUserByEmail(Connection connection, String email) throws DBException {
         User user = null;
-        connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -85,15 +79,13 @@ public class UserDaoImpl implements UserDao {
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return user;
     }
 
     @Override
-    public String findUserEmailByEmail(String email) throws DBException {
+    public String findUserEmailByEmail(Connection connection, String email) throws DBException {
         String dbEmail = null;
-        connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -112,15 +104,13 @@ public class UserDaoImpl implements UserDao {
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return dbEmail;
     }
 
     @Override
-    public List<User> findAllMasters() throws DBException {
+    public List<User> findAllMasters(Connection connection) throws DBException {
         List<User> masters = new ArrayList<>();
-        connection = ConnectionPool.getInstance().getConnection();
         Statement ps = null;
         ResultSet rs = null;
         try {
@@ -142,15 +132,13 @@ public class UserDaoImpl implements UserDao {
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return masters;
     }
 
     @Override
-    public List<User> getUsersWithBookingByDate(Date date) {
+    public List<User> getUsersWithBookingByDate(Connection connection, Date date) {
         List<User> users = new ArrayList<>();
-        connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -174,19 +162,8 @@ public class UserDaoImpl implements UserDao {
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return users;
-    }
-
-    private void close(Connection con) {
-        try {
-            if (con != null) {
-                con.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     private void close(Statement ps) {

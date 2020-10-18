@@ -3,6 +3,7 @@ package com.epam.dao;
 import com.epam.entity.Service;
 import com.epam.exception.DBException;
 
+import java.sql.Connection;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public interface PriceListDao {
      *
      * @return all services.
      */
-    List<Service> getAllServices() throws DBException;
+    List<Service> getAllServices(Connection connection) throws DBException;
 
     /**
      * Get services from database.
@@ -27,9 +28,9 @@ public interface PriceListDao {
      * @param limit limit
      * @return all services.
      */
-    List<Service> getChosenNumberOfServices(int start, int limit) throws DBException;
+    List<Service> getChosenNumberOfServices(Connection connection, int start, int limit) throws DBException;
 
-    int getCountOfService() throws DBException;
+    int getCountOfService(Connection connection) throws DBException;
 
-    List<Service> getServicesByMaster(int masterId) throws DBException;
+    List<Service> getServicesByMaster(Connection connection, int masterId) throws DBException;
 }

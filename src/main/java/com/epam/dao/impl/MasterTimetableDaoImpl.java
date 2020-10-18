@@ -4,7 +4,6 @@ import com.epam.dao.MasterTimetableDao;
 import com.epam.entity.*;
 import com.epam.exception.DBException;
 import com.epam.exception.Messages;
-import com.epam.util.ConnectionPool;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -28,13 +27,9 @@ public class MasterTimetableDaoImpl implements MasterTimetableDao {
                     "ORDER BY start_time ";
     private static final String SQL_SET_BOOKING_DONE = "UPDATE beauty_salon.booking SET progress_status = 'done' WHERE id = ? ";
 
-    private Connection connection;
-
-
     @Override
-    public List<Timetable> getMasterTimetableByDate(Date date, int masterId) throws DBException {
+    public List<Timetable> getMasterTimetableByDate(Connection connection, Date date, int masterId) throws DBException {
         List<Timetable> timetables = new ArrayList<>();
-        connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -79,14 +74,12 @@ public class MasterTimetableDaoImpl implements MasterTimetableDao {
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return timetables;
     }
 
     @Override
-    public boolean setBookingDone(int bookingId) {
-        connection = ConnectionPool.getInstance().getConnection();
+    public boolean setBookingDone(Connection connection, int bookingId) {
         PreparedStatement ps = null;
         try {
             ps = connection.prepareStatement(SQL_SET_BOOKING_DONE);
@@ -103,16 +96,6 @@ public class MasterTimetableDaoImpl implements MasterTimetableDao {
             close(ps);
         }
         return true;
-    }
-
-    private void close(Connection con) {
-        try {
-            if (con != null) {
-                con.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     private void close(Statement ps) {

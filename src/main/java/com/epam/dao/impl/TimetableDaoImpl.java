@@ -1,10 +1,12 @@
 package com.epam.dao.impl;
 
 import com.epam.dao.TimetableDao;
-import com.epam.entity.*;
+import com.epam.entity.Role;
+import com.epam.entity.Timeslot;
+import com.epam.entity.Timetable;
+import com.epam.entity.User;
 import com.epam.exception.DBException;
 import com.epam.exception.Messages;
-import com.epam.util.ConnectionPool;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -74,8 +76,6 @@ public class TimetableDaoImpl implements TimetableDao {
                     "AND service_id=? " +
                     "ORDER BY user.first_name, user.last_name ";
 
-    private Connection connection;
-
     private final String SQL_GET_TIMETABLE_BY_DATE =
             "SELECT timetable.id, timeslot_id, timeslot.start_time, timeslot.end_time, user.id, user.first_name, user.last_name, booking_id " +
                     "FROM beauty_salon.timetable " +
@@ -98,10 +98,8 @@ public class TimetableDaoImpl implements TimetableDao {
     private static final String SQL_ADD_BOOKING_TO_TIMETABLE = "UPDATE timetable SET booking_id = ? WHERE (id = ?)  AND booking_id IS NULL ";
 
     @Override
-    public List<Timetable> getTimetable(Date date, Time time, int start, int limit) throws DBException {
-        System.out.println("Time inside = " + time);
+    public List<Timetable> getTimetable(Connection connection, Date date, Time time, int start, int limit) throws DBException {
         List<Timetable> timetables = new ArrayList<>();
-        connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -140,15 +138,13 @@ public class TimetableDaoImpl implements TimetableDao {
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return timetables;
     }
 
     @Override
-    public List<Date> getDates(Date date) throws DBException {
+    public List<Date> getDates(Connection connection, Date date) throws DBException {
         List<Date> dates = new ArrayList<>();
-        connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -167,16 +163,13 @@ public class TimetableDaoImpl implements TimetableDao {
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return dates;
     }
 
-    //in progress
     @Override
-    public List<Timetable> getTimetableByDateAndMasterId(Date date, int masterId, Time time, int start, int limit) throws DBException {
+    public List<Timetable> getTimetableByDateAndMasterId(Connection connection, Date date, int masterId, Time time, int start, int limit) throws DBException {
         List<Timetable> timetables = new ArrayList<>();
-        connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -216,15 +209,13 @@ public class TimetableDaoImpl implements TimetableDao {
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return timetables;
     }
 
     @Override
-    public int getTimetableByDateAndMasterIdCount(Date date, Time time, int masterId) throws DBException {
+    public int getTimetableByDateAndMasterIdCount(Connection connection, Date date, Time time, int masterId) throws DBException {
         int count = 0;
-        connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -245,15 +236,13 @@ public class TimetableDaoImpl implements TimetableDao {
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return count;
     }
 
     @Override
-    public List<Timetable> getTimetableByDateAndSortByMasterName(Date date, Time time, int start, int limit) throws DBException {
+    public List<Timetable> getTimetableByDateAndSortByMasterName(Connection connection, Date date, Time time, int start, int limit) throws DBException {
         List<Timetable> timetables = new ArrayList<>();
-        connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -292,15 +281,13 @@ public class TimetableDaoImpl implements TimetableDao {
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return timetables;
     }
 
     @Override
-    public int getTimetableByDateCount(Date date, Time time) throws DBException {
+    public int getTimetableByDateCount(Connection connection, Date date, Time time) throws DBException {
         int count = 0;
-        connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -320,15 +307,13 @@ public class TimetableDaoImpl implements TimetableDao {
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return count;
     }
 
     @Override
-    public List<Timetable> getTimetableByDateAndSortByMasterMark(Date date, Time time, int start, int limit) throws DBException {
+    public List<Timetable> getTimetableByDateAndSortByMasterMark(Connection connection, Date date, Time time, int start, int limit) throws DBException {
         List<Timetable> timetables = new ArrayList<>();
-        connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -367,15 +352,13 @@ public class TimetableDaoImpl implements TimetableDao {
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return timetables;
     }
 
     @Override
-    public List<Timetable> getTimetableByDateAndService(Date date, int serviceId, Time time, int start, int limit) throws DBException {
+    public List<Timetable> getTimetableByDateAndService(Connection connection, Date date, int serviceId, Time time, int start, int limit) throws DBException {
         List<Timetable> timetables = new ArrayList<>();
-        connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -416,15 +399,13 @@ public class TimetableDaoImpl implements TimetableDao {
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return timetables;
     }
 
     @Override
-    public int getTimetableByDateAndServiceCount(Date date, Time time, int serviceId) throws DBException {
+    public int getTimetableByDateAndServiceCount(Connection connection, Date date, Time time, int serviceId) throws DBException {
         int count = 0;
-        connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -445,7 +426,6 @@ public class TimetableDaoImpl implements TimetableDao {
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return count;
     }
@@ -492,16 +472,6 @@ public class TimetableDaoImpl implements TimetableDao {
             close(ps);
         }
         return true;
-    }
-
-    private void close(Connection con) {
-        try {
-            if (con != null) {
-                con.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     private void close(Statement ps) {

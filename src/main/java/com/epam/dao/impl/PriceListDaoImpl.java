@@ -4,7 +4,6 @@ import com.epam.dao.PriceListDao;
 import com.epam.entity.Service;
 import com.epam.exception.DBException;
 import com.epam.exception.Messages;
-import com.epam.util.ConnectionPool;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -23,12 +22,9 @@ public class PriceListDaoImpl implements PriceListDao {
                     "LEFT JOIN beauty_salon.service ON master_has_service.service_id=service.id " +
                     "WHERE user_id=? ";
 
-    private Connection connection;
-
     @Override
-    public List<Service> getAllServices() throws DBException {
+    public List<Service> getAllServices(Connection connection) throws DBException {
         List<Service> services = new ArrayList<>();
-        connection = ConnectionPool.getInstance().getConnection();
         Statement ps = null;
         ResultSet rs = null;
         try {
@@ -46,15 +42,13 @@ public class PriceListDaoImpl implements PriceListDao {
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return services;
     }
 
     @Override
-    public List<Service> getChosenNumberOfServices(int start, int limit) throws DBException {
+    public List<Service> getChosenNumberOfServices(Connection connection, int start, int limit) throws DBException {
         List<Service> services = new ArrayList<>();
-        connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -74,15 +68,13 @@ public class PriceListDaoImpl implements PriceListDao {
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return services;
     }
 
     @Override
-    public int getCountOfService() throws DBException {
+    public int getCountOfService(Connection connection) throws DBException {
         int count = 0;
-        connection = ConnectionPool.getInstance().getConnection();
         Statement ps = null;
         ResultSet rs = null;
         try {
@@ -98,15 +90,13 @@ public class PriceListDaoImpl implements PriceListDao {
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return count;
     }
 
     @Override
-    public List<Service> getServicesByMaster(int masterId) throws DBException {
+    public List<Service> getServicesByMaster(Connection connection, int masterId) throws DBException {
         List<Service> services = new ArrayList<>();
-        connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -126,19 +116,8 @@ public class PriceListDaoImpl implements PriceListDao {
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return services;
-    }
-
-    private void close(Connection con) {
-        try {
-            if (con != null) {
-                con.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     private void close(Statement ps) {

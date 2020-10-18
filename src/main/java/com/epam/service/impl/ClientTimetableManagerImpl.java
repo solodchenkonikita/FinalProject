@@ -22,12 +22,22 @@ public class ClientTimetableManagerImpl implements ClientTimetableManager {
 
     @Override
     public List<Timetable> getTimetableWithUserBooking(int userId, int start, int limit) throws DBException {
-        return clientBookingDao.getTimetableWithUserBooking(userId, start, limit);
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            return clientBookingDao.getTimetableWithUserBooking(connection, userId, start, limit);
+        } finally {
+            close(connection);
+        }
     }
 
     @Override
     public int getUserBookingCount(int clientId) throws DBException {
-        return clientBookingDao.getUserBookingCount(clientId);
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            return clientBookingDao.getUserBookingCount(connection, clientId);
+        } finally {
+            close(connection);
+        }
     }
 
     @Override
@@ -69,7 +79,12 @@ public class ClientTimetableManagerImpl implements ClientTimetableManager {
 
     @Override
     public boolean setComment(int bookingId, String comment) {
-        return clientBookingDao.setComment(bookingId, comment);
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            return clientBookingDao.setComment(connection, bookingId, comment);
+        } finally {
+            close(connection);
+        }
     }
 
     private void close(Connection con) {

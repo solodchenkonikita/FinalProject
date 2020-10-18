@@ -23,47 +23,100 @@ public class TimetableManagerImpl implements TimetableManager {
 
     @Override
     public List<Timetable> getTimetable(Date date, Time time, int start, int limit) throws DBException {
-        return timetableDao.getTimetable(date, time, start, limit);
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            return timetableDao.getTimetable(connection, date, time, start, limit);
+        } finally {
+            close(connection);
+        }
     }
 
     @Override
     public List<Date> getDates(Date date) throws DBException {
-        return timetableDao.getDates(date);
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            return timetableDao.getDates(connection, date);
+        } finally {
+            close(connection);
+        }
+
     }
 
     @Override
     public List<Timetable> getTimetableByDateAndMasterId(Date date, int id, Time time, int start, int limit) throws DBException {
-        return timetableDao.getTimetableByDateAndMasterId(date, id, time, start, limit);
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            return timetableDao.getTimetableByDateAndMasterId(connection, date, id, time, start, limit);
+        } finally {
+            close(connection);
+        }
+
     }
 
     @Override
     public int getTimetableByDateAndMasterIdCount(Date date, Time time, int id) throws DBException {
-        return timetableDao.getTimetableByDateAndMasterIdCount(date, time, id);
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            return timetableDao.getTimetableByDateAndMasterIdCount(connection, date, time, id);
+        } finally {
+            close(connection);
+        }
+
     }
 
     @Override
     public List<Timetable> getTimetableByDateAndSortByMasterName(Date date, Time time, int start, int limit) throws DBException {
-        return timetableDao.getTimetableByDateAndSortByMasterName(date, time, start, limit);
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            return timetableDao.getTimetableByDateAndSortByMasterName(connection, date, time, start, limit);
+        } finally {
+            close(connection);
+        }
+
     }
 
     @Override
     public int getTimetableByDateCount(Date date, Time time) throws DBException {
-        return timetableDao.getTimetableByDateCount(date, time);
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            return timetableDao.getTimetableByDateCount(connection, date, time);
+        } finally {
+            close(connection);
+        }
+
     }
 
     @Override
     public List<Timetable> getTimetableByDateAndSortByMasterMark(Date date, Time time, int start, int limit) throws DBException {
-        return timetableDao.getTimetableByDateAndSortByMasterMark(date, time, start, limit);
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            return timetableDao.getTimetableByDateAndSortByMasterMark(connection, date, time, start, limit);
+        } finally {
+            close(connection);
+        }
+
     }
 
     @Override
     public List<Timetable> getTimetableByDateAndService(Date date, int serviceId, Time time, int start, int limit) throws DBException {
-        return timetableDao.getTimetableByDateAndService(date, serviceId, time, start, limit);
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            return timetableDao.getTimetableByDateAndService(connection, date, serviceId, time, start, limit);
+        } finally {
+            close(connection);
+        }
+
     }
 
     @Override
     public int getTimetableByDateAndServiceCount(Date date, Time time, int id) throws DBException {
-        return timetableDao.getTimetableByDateAndServiceCount(date, time, id);
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            return timetableDao.getTimetableByDateAndServiceCount(connection, date, time, id);
+        } finally {
+            close(connection);
+        }
+
     }
 
     @Override

@@ -4,7 +4,6 @@ import com.epam.dao.AdministratorTimetableDao;
 import com.epam.entity.*;
 import com.epam.exception.DBException;
 import com.epam.exception.Messages;
-import com.epam.util.ConnectionPool;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -45,12 +44,9 @@ public class AdministratorTimetableDaoImpl implements AdministratorTimetableDao 
     private static final String SQL_DELETE_BOOKING_FROM_TIMETABLE = "UPDATE beauty_salon.timetable SET booking_id = NULL WHERE booking_id=? ";
     private static final String SQL_DELETE_BOOKING = "DELETE FROM beauty_salon.booking WHERE id=? ";
 
-    private Connection connection;
-
     @Override
-    public List<Timetable> getTimetableWithBookingByDate(Date date, int start, int limit) throws DBException {
+    public List<Timetable> getTimetableWithBookingByDate(Connection connection, Date date, int start, int limit) throws DBException {
         List<Timetable> timetables = new ArrayList<>();
-        connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -104,15 +100,13 @@ public class AdministratorTimetableDaoImpl implements AdministratorTimetableDao 
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return timetables;
     }
 
     @Override
-    public int getTimetableWithBookingByDateCount(Date date) throws DBException {
+    public int getTimetableWithBookingByDateCount(Connection connection, Date date) throws DBException {
         int count = 0;
-        connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -129,14 +123,12 @@ public class AdministratorTimetableDaoImpl implements AdministratorTimetableDao 
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return count;
     }
 
     @Override
-    public boolean setBookingPaid(int bookingId) {
-        connection = ConnectionPool.getInstance().getConnection();
+    public boolean setBookingPaid(Connection connection, int bookingId) {
         PreparedStatement ps = null;
         try {
             ps = connection.prepareStatement(SQL_SET_BOOKING_PAID);
@@ -196,9 +188,8 @@ public class AdministratorTimetableDaoImpl implements AdministratorTimetableDao 
     }
 
     @Override
-    public List<Timetable> getMasterFreeTimetableByDate(Date date, int masterId) throws DBException {
+    public List<Timetable> getMasterFreeTimetableByDate(Connection connection, Date date, int masterId) throws DBException {
         List<Timetable> timetables = new ArrayList<>();
-        connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -227,19 +218,8 @@ public class AdministratorTimetableDaoImpl implements AdministratorTimetableDao 
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return timetables;
-    }
-
-    private void close(Connection con) {
-        try {
-            if (con != null) {
-                con.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     private void close(Statement ps) {

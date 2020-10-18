@@ -4,7 +4,6 @@ import com.epam.dao.ClientBookingDao;
 import com.epam.entity.*;
 import com.epam.exception.DBException;
 import com.epam.exception.Messages;
-import com.epam.util.ConnectionPool;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -37,13 +36,9 @@ public class ClientBookingDaoImpl implements ClientBookingDao {
     private static final String SQL_SET_MARK_TO_MASTER = "UPDATE beauty_salon.master_mark SET mark = ? WHERE master_id = ? ";
     private static final String SQL_SET_COMMENT = "UPDATE beauty_salon.booking SET comment = ? WHERE id = ? ";
 
-    private Connection connection;
-
-
     @Override
-    public List<Timetable> getTimetableWithUserBooking(int userId, int start, int limit) throws DBException {
+    public List<Timetable> getTimetableWithUserBooking(Connection connection, int userId, int start, int limit) throws DBException {
         List<Timetable> timetables = new ArrayList<>();
-        connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -93,15 +88,13 @@ public class ClientBookingDaoImpl implements ClientBookingDao {
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return timetables;
     }
 
     @Override
-    public int getUserBookingCount(int clientId) throws DBException {
+    public int getUserBookingCount(Connection connection, int clientId) throws DBException {
         int count = 0;
-        connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -118,7 +111,6 @@ public class ClientBookingDaoImpl implements ClientBookingDao {
         } finally {
             close(rs);
             close(ps);
-            close(connection);
         }
         return count;
     }
@@ -154,7 +146,7 @@ public class ClientBookingDaoImpl implements ClientBookingDao {
             ps.execute();
 
             rs = ps.getResultSet();
-            if (rs.next()) {
+            while (rs.next()) {
                 marks.add(rs.getInt(1));
             }
 
@@ -190,8 +182,7 @@ public class ClientBookingDaoImpl implements ClientBookingDao {
     }
 
     @Override
-    public boolean setComment(int bookingId, String comment) {
-        connection = ConnectionPool.getInstance().getConnection();
+    public boolean setComment(Connection connection, int bookingId, String comment) {
         PreparedStatement ps = null;
         try {
             ps = connection.prepareStatement(SQL_SET_COMMENT);
@@ -209,17 +200,6 @@ public class ClientBookingDaoImpl implements ClientBookingDao {
             close(ps);
         }
         return true;
-    }
-
-
-    private void close(Connection con) {
-        try {
-            if (con != null) {
-                con.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     private void close(Statement ps) {

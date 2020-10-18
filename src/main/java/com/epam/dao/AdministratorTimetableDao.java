@@ -9,16 +9,16 @@ import java.util.List;
 
 public interface AdministratorTimetableDao {
 
-    List<Timetable> getTimetableWithBookingByDate(Date date, int start, int limit) throws DBException;
+    List<Timetable> getTimetableWithBookingByDate(Connection connection, Date date, int start, int limit) throws DBException;
 
-    int getTimetableWithBookingByDateCount(Date date) throws DBException;
+    int getTimetableWithBookingByDateCount(Connection connection, Date date) throws DBException;
 
-    boolean setBookingPaid(int bookingId);
+    boolean setBookingPaid(Connection connection, int bookingId);
 
     boolean deleteBookingFromTimetable(Connection connection, int bookingId);
 
     boolean deleteBooking(Connection connection, int bookingId);
 
-    List<Timetable> getMasterFreeTimetableByDate(Date date, int masterId) throws DBException;
+    List<Timetable> getMasterFreeTimetableByDate(Connection connection, Date date, int masterId) throws DBException;
 
 }

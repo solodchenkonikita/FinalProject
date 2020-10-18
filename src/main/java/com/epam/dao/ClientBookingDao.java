@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface ClientBookingDao {
 
-    List<Timetable> getTimetableWithUserBooking(int userId, int start, int limit) throws DBException;
+    List<Timetable> getTimetableWithUserBooking(Connection connection, int userId, int start, int limit) throws DBException;
 
-    int getUserBookingCount(int clientId) throws DBException;
+    int getUserBookingCount(Connection connection, int clientId) throws DBException;
 
     boolean setMarkInBooking(Connection connection, int bookingId, int mark);
 
@@ -18,5 +18,5 @@ public interface ClientBookingDao {
 
     boolean setMarkToMaster(Connection connection, int masterId, double mark);
 
-    boolean setComment(int bookingId, String comment);
+    boolean setComment(Connection connection, int bookingId, String comment);
 }

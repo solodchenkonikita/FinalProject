@@ -5,8 +5,11 @@ import com.epam.dao.impl.UserDaoImpl;
 import com.epam.entity.User;
 import com.epam.exception.DBException;
 import com.epam.service.UserManager;
+import com.epam.util.ConnectionPool;
 
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.List;
 
 public class UserManagerImpl implements UserManager {
@@ -15,26 +18,62 @@ public class UserManagerImpl implements UserManager {
 
     @Override
     public void addUser(User user) throws DBException {
-        userDao.addUser(user);
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            userDao.addUser(connection, user);
+        } finally {
+            close(connection);
+        }
     }
 
     @Override
     public User getUserByEmail(String email) throws DBException {
-        return userDao.findUserByEmail(email);
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            return userDao.findUserByEmail(connection, email);
+        } finally {
+            close(connection);
+        }
     }
 
     @Override
     public String getUserEmailByEmail(String email) throws DBException {
-        return userDao.findUserEmailByEmail(email);
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            return userDao.findUserEmailByEmail(connection, email);
+        } finally {
+            close(connection);
+        }
     }
 
     @Override
     public List<User> findAllMasters() throws DBException {
-        return userDao.findAllMasters();
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            return userDao.findAllMasters(connection);
+        } finally {
+            close(connection);
+        }
     }
 
     @Override
     public List<User> getUsersWithBookingByDate(Date date) {
-        return userDao.getUsersWithBookingByDate(date);
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            return userDao.getUsersWithBookingByDate(connection, date);
+        } finally {
+            close(connection);
+        }
     }
+
+    private void close(Connection con) {
+        try {
+            if (con != null) {
+                con.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
