@@ -10,6 +10,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An implementation of ClientBookingDao interface.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class ClientBookingDaoImpl implements ClientBookingDao {
 
     private final static Logger LOG = Logger.getLogger(ClientBookingDao.class);

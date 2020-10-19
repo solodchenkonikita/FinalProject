@@ -9,6 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Invoked when command was not found for user request.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class NoCommand extends Command {
 
     private static final long serialVersionUID = 5413501849604794106L;

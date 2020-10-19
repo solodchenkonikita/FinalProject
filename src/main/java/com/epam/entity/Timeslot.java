@@ -2,6 +2,12 @@ package com.epam.entity;
 
 import java.sql.Time;
 
+/**
+ * Timeslot entity.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class Timeslot extends Entity {
 
     private static final long serialVersionUID = 2121867589480993070L;

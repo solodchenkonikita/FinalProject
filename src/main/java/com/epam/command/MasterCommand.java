@@ -20,6 +20,12 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Master command.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class MasterCommand extends Command {
 
     private static final long serialVersionUID = -2349087714933394198L;
@@ -42,6 +48,11 @@ public class MasterCommand extends Command {
         return result;
     }
 
+    /**
+     * Forwards to master page.
+     *
+     * @return path to the master page.
+     */
     private String doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, AppException {
         LOG.debug("Start executing Command");
@@ -75,6 +86,11 @@ public class MasterCommand extends Command {
         return result;
     }
 
+    /**
+     * Redirects to master page after changing user booking status.
+     *
+     * @return path to the master page.
+     */
     private String doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, AppException {
         LOG.debug("Start executing Command");

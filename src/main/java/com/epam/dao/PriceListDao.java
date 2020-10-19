@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.util.List;
 
 /**
- * Work with price list in database
+ * Price list dao interface.
  *
  * @author Nikita Solodchenko
  *
@@ -15,22 +15,37 @@ import java.util.List;
 public interface PriceListDao {
 
     /**
-     * Get services from database.
+     * Get all services.
      *
-     * @return all services.
+     * @param connection connection to database.
+     * @return list of services.
      */
     List<Service> getAllServices(Connection connection) throws DBException;
 
     /**
-     * Get services from database.
+     * Get part of the services.
      *
-     * @param start start
-     * @param limit limit
-     * @return all services.
+     * @param connection connection to database.
+     * @param start start position of services.
+     * @param limit limit for getting number of services.
+     * @return list of services.
      */
     List<Service> getChosenNumberOfServices(Connection connection, int start, int limit) throws DBException;
 
+    /**
+     * Get services count.
+     *
+     * @param connection connection to database.
+     * @return count of services.
+     */
     int getCountOfService(Connection connection) throws DBException;
 
+    /**
+     * Get master services.
+     *
+     * @param connection connection to database.
+     * @param masterId specified master id.
+     * @return list of services.
+     */
     List<Service> getServicesByMaster(Connection connection, int masterId) throws DBException;
 }

@@ -24,7 +24,7 @@
             <div class="dropdown-menu">
                 <c:forEach var="date" items="${dateList}">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="date" id=${date} value=${date}>
+                        <input class="form-check-input" type="radio" name="date" id=${date} value="${date}" required autofocus>
                         <label class="form-check-label" for=${date}>
                                 <custom:date date="${date}"/>
                         </label>
@@ -70,7 +70,7 @@
             <div class="dropdown-menu">
                 <c:forEach var="date" items="${dateList}">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="date" id=${date}2 value=${date}>
+                        <input class="form-check-input" type="radio" name="date" id=${date}2 value="${date}" required autofocus>
                         <label class="form-check-label" for=${date}2>
                             <custom:date date="${date}"/>
                         </label>
@@ -113,7 +113,7 @@
             <div class="dropdown-menu">
                 <c:forEach var="date" items="${dateList}">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="date" id=${date}2 value=${date}>
+                        <input class="form-check-input" type="radio" name="date" id=${date}2 value="${date}" required autofocus>
                         <label class="form-check-label" for=${date}2>
                             <custom:date date="${date}"/>
                         </label>

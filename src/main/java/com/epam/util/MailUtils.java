@@ -10,6 +10,12 @@ import javax.naming.InitialContext;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
+/**
+ * Mail util class designed to send email for user.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class MailUtils {
     private static final Logger LOG = Logger.getLogger(MailUtils.class);
 
@@ -28,6 +34,12 @@ public class MailUtils {
         return session;
     }
 
+    /**
+     * Send email to user.
+     *
+     * @param user recipient.
+     *
+     */
     public static void sendEmailAboutComment(User user) {
         try {
             Message msg = new MimeMessage(SESSION);
@@ -48,6 +60,14 @@ public class MailUtils {
         }
     }
 
+    /**
+     * Set content to email.
+     *
+     * @param msg massage.
+     * @param user recipient.
+     * @throws MessagingException
+     * @throws UnsupportedEncodingException
+     */
     private static void setContentToComment(Message msg, User user)
             throws MessagingException, UnsupportedEncodingException {
         msg.setSubject(theme);

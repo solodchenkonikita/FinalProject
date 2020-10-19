@@ -16,6 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * Registration command.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class RegistrationCommand extends Command {
 
     private static final long serialVersionUID = 126923332637907843L;
@@ -36,6 +42,11 @@ public class RegistrationCommand extends Command {
         return result;
     }
 
+    /**
+     * Redirect user after registration.
+     *
+     * @return path to the main page.
+     */
     private String doPost(HttpServletRequest request, HttpServletResponse response)
             throws AppException {
         LOG.debug("Start executing Command");

@@ -25,6 +25,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Timetable command.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class TimetableCommand extends Command {
 
     private static final long serialVersionUID = -5958977384084208068L;
@@ -46,9 +52,9 @@ public class TimetableCommand extends Command {
     }
 
     /**
-     * Get timetable from database.
+     * Forward to timetable page.
      *
-     * @return path to the page.
+     * @return path to the page with timetable.
      */
     private String doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, AppException {

@@ -15,6 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * Invoked when user logins in the system.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class LoginCommand extends Command {
     private static final long serialVersionUID = -3071536593627692473L;
 
@@ -37,7 +43,7 @@ public class LoginCommand extends Command {
     /**
      * Login user in system and open main page.
      *
-     * @return path to the page.
+     * @return path to the main page.
      */
     private String doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, AppException {

@@ -2,6 +2,12 @@ package com.epam.entity;
 
 import java.sql.Date;
 
+/**
+ * Timetable entity.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class Timetable extends Entity {
     private static final long serialVersionUID = -6033724926184323065L;
 

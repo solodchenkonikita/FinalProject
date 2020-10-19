@@ -1,5 +1,11 @@
 package com.epam.entity;
 
+/**
+ * User entity.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class User extends Entity {
 
     private static final long serialVersionUID = -4803310413058377468L;

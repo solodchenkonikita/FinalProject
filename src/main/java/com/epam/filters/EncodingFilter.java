@@ -5,6 +5,13 @@ import org.apache.log4j.Logger;
 import javax.servlet.*;
 import java.io.IOException;
 
+/**
+ * Encoding filter. Checks for requested client encoding. If none requested
+ * - sets to UTF-8.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class EncodingFilter implements Filter {
 
     private static final Logger LOG = Logger.getLogger(EncodingFilter.class);

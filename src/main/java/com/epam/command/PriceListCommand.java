@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Invoked when user wants to see list of all prices.
+ * Price list command.
  *
  * @author Nikita Solodchenko
  */
@@ -42,7 +42,7 @@ public class PriceListCommand extends Command {
     /**
      * Forward user to page with list of all prices.
      *
-     * @return path to the page.
+     * @return path to the page with prices.
      */
     private String doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, AppException {

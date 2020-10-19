@@ -11,6 +11,13 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * Invokes when user what to execute some command.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
+
 public class AccessFilter implements Filter {
 
     private static final Logger LOG = Logger.getLogger(AccessFilter.class);

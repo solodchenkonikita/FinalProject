@@ -10,6 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Change language command.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class LanguageCommand extends Command {
 
     private static final long serialVersionUID = 6043069943572736356L;
@@ -30,6 +36,11 @@ public class LanguageCommand extends Command {
         return result;
     }
 
+    /**
+     * Redirect to current url where language command has been called.
+     *
+     * @return path to current url.
+     */
     private String doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, AppException {
         LOG.debug("Start executing Command");

@@ -10,7 +10,7 @@ import java.sql.SQLException;
 /**
  * The class provides connection pool.
  *
- * @author Nikita Solodchenko
+ * @author Solodchenko Nikita
  */
 public class ConnectionPool {
     private ConnectionPool() {
@@ -39,6 +39,7 @@ public class ConnectionPool {
             }
         } catch (NamingException | SQLException e) {
             e.printStackTrace();
+            throw new IllegalStateException("Cannot get connection to database");
         }
         return c;
     }

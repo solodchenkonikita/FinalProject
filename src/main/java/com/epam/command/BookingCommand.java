@@ -13,6 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Booking command.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class BookingCommand extends Command {
 
     private static final long serialVersionUID = -2270234117555632821L;
@@ -33,6 +39,11 @@ public class BookingCommand extends Command {
         return result;
     }
 
+    /**
+     * Redirect user after creating booking.
+     *
+     * @return path to the user page.
+     */
     private String doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, AppException {
         String result;

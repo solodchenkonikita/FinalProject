@@ -5,6 +5,12 @@ import org.apache.log4j.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class that manages all commands.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class CommandManager {
     private static final Logger LOG = Logger.getLogger(CommandManager.class);
 
@@ -24,6 +30,14 @@ public class CommandManager {
         commands.put("language", new LanguageCommand());
     }
 
+    /**
+     * Returns command object which execution will give path to the resource.
+     *
+     * @param commandName
+     *            Name of the command.
+     * @return Command object if container contains such command, otherwise
+     *         specific <code>noCommand</code> object will be returned.
+     */
     public static Command get(String commandName) {
         if (commandName == null || !commands.containsKey(commandName)) {
             LOG.trace("Command not found with name = " + commandName);

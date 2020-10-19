@@ -1,5 +1,11 @@
 package com.epam.entity;
 
+/**
+ * Booking entity.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class Booking extends Entity {
 
     private static final long serialVersionUID = -4045566276948667467L;

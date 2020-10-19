@@ -10,6 +10,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An implementation of MasterTimetableDao interface.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class MasterTimetableDaoImpl implements MasterTimetableDao {
 
     private final static Logger LOG = Logger.getLogger(MasterTimetableDaoImpl.class);

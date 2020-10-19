@@ -20,6 +20,13 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+
+/**
+ * Administrator command.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class AdministratorCommand extends Command {
 
     private static final long serialVersionUID = -6556407791338961555L;
@@ -42,6 +49,11 @@ public class AdministratorCommand extends Command {
         return result;
     }
 
+    /**
+     * Forwards to administrator page.
+     *
+     * @return path to the administrator page.
+     */
     private String doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, AppException {
         LOG.debug("Start executing Command");
@@ -106,6 +118,11 @@ public class AdministratorCommand extends Command {
         return result;
     }
 
+    /**
+     * Redirects to administrator page after changing user booking.
+     *
+     * @return path to the administrator page.
+     */
     private String doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, AppException {
         LOG.debug("Start executing Command");

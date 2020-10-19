@@ -13,6 +13,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An implementation of TimetableDao interface.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class TimetableDaoImpl implements TimetableDao {
 
     private final static Logger LOG = Logger.getLogger(TimetableDaoImpl.class);

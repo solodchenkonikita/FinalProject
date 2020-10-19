@@ -13,6 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Main servlet controller.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
+
 public class FrontController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -26,6 +33,18 @@ public class FrontController extends HttpServlet {
         process(request, response, ActionType.POST);
     }
 
+    /**
+     * Handles all requests coming from the client by executing the specified
+     * command name in a request. Implements PRG pattern by checking action type
+     * specified by the invoked method.
+     *
+     * @param request
+     * @param response
+     * @param actionType
+     * @throws IOException
+     * @throws ServletException
+     * @see ActionType
+     */
     private void process(HttpServletRequest request, HttpServletResponse response, ActionType actionType)
             throws IOException, ServletException {
         LOG.debug("Start processing in Controller");

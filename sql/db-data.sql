@@ -37,22 +37,31 @@ INSERT INTO `beauty_salon`.`calendar` (`date`) VALUES ('2020-10-13');
 INSERT INTO `beauty_salon`.`calendar` (`date`) VALUES ('2020-10-14');
 INSERT INTO `beauty_salon`.`calendar` (`date`) VALUES ('2020-10-15');
 INSERT INTO `beauty_salon`.`calendar` (`date`) VALUES ('2020-10-16');
+INSERT INTO `beauty_salon`.`calendar` (`date`) VALUES ('2020-10-17');
+INSERT INTO `beauty_salon`.`calendar` (`date`) VALUES ('2020-10-18');
+INSERT INTO `beauty_salon`.`calendar` (`date`) VALUES ('2020-10-19');
+INSERT INTO `beauty_salon`.`calendar` (`date`) VALUES ('2020-10-20');
+INSERT INTO `beauty_salon`.`calendar` (`date`) VALUES ('2020-10-21');
+INSERT INTO `beauty_salon`.`calendar` (`date`) VALUES ('2020-10-22');
+INSERT INTO `beauty_salon`.`calendar` (`date`) VALUES ('2020-10-23');
+INSERT INTO `beauty_salon`.`calendar` (`date`) VALUES ('2020-10-24');
+INSERT INTO `beauty_salon`.`calendar` (`date`) VALUES ('2020-10-25');
 
 
 -- Insert service table
 
-INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('first', '15');
-INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('second', '25');
-INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('third', '35');
-INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('four', '10');
-INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('five', '10');
-INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('six', '10');
-INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('seven', '10');
-INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('eight', '10');
-INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('nine', '10');
-INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('ten', '10');
-INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('eleven', '10');
-INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('twelve', '10');
+INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('Haircut', '100');
+INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('Manicure', '120');
+INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('Pedicure', '130');
+INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('Extension of nails', '200');
+INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('Removal of extended nails', '300');
+INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('Makeup', '350');
+INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('Eyebrow correction', '100');
+INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('Eyebrow tinting', '200');
+INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('Face cleaning', '700');
+INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('Peeling', '700');
+INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('Hair straightening', '500');
+INSERT INTO `beauty_salon`.`service` (`service_name`, `price`) VALUES ('Massage', '550');
 
 
 -- Insert role table
@@ -64,13 +73,13 @@ INSERT INTO `beauty_salon`.`role` (`rolename`) VALUES ('client');
 
 -- Insert user table
 
-INSERT INTO `beauty_salon`.`user` (`first_name`, `last_name`, `email`, `password`, `role_id`) VALUES ('admin', 'admin', 'admin@gmail.com', 'admin', '1');
-INSERT INTO `beauty_salon`.`user` (`first_name`, `last_name`, `email`, `password`, `role_id`) VALUES ('admin2', 'admin2', 'admin2@gmail.com', 'admin2', '1');
-INSERT INTO `beauty_salon`.`user` (`first_name`, `last_name`, `email`, `password`, `role_id`) VALUES ('master', 'master', 'master@gmail.com', 'master', '2');
-INSERT INTO `beauty_salon`.`user` (`first_name`, `last_name`, `email`, `password`, `role_id`) VALUES ('master2', 'master2', 'master2@gmail.com', 'master2', '2');
-INSERT INTO `beauty_salon`.`user` (`first_name`, `last_name`, `email`, `password`, `role_id`) VALUES ('master3', 'master3', 'master3@gmail.com', 'master3', '2');
-INSERT INTO `beauty_salon`.`user` (`first_name`, `last_name`, `email`, `password`, `role_id`) VALUES ('client', 'client', 'client@gmail.com', 'client', '3');
-INSERT INTO `beauty_salon`.`user` (`first_name`, `last_name`, `email`, `password`, `role_id`) VALUES ('client2', 'client2', 'client2@gmail.com', 'client2', '3');
+INSERT INTO `beauty_salon`.`user` (`first_name`, `last_name`, `email`, `password`, `role_id`) VALUES ('Костя', 'Горький', 'admin@gmail.com', 'admin', '1');
+INSERT INTO `beauty_salon`.`user` (`first_name`, `last_name`, `email`, `password`, `role_id`) VALUES ('Влад', 'Парфенюк', 'admin2@gmail.com', 'admin2', '1');
+INSERT INTO `beauty_salon`.`user` (`first_name`, `last_name`, `email`, `password`, `role_id`) VALUES ('Лиза', 'Лупова', 'master@gmail.com', 'master', '2');
+INSERT INTO `beauty_salon`.`user` (`first_name`, `last_name`, `email`, `password`, `role_id`) VALUES ('Катя', 'Матвиенко', 'master2@gmail.com', 'master2', '2');
+INSERT INTO `beauty_salon`.`user` (`first_name`, `last_name`, `email`, `password`, `role_id`) VALUES ('Лера', 'Яковлева', 'master3@gmail.com', 'master3', '2');
+INSERT INTO `beauty_salon`.`user` (`first_name`, `last_name`, `email`, `password`, `role_id`) VALUES ('Вика', 'Стельникович', 'client@gmail.com', 'client', '3');
+INSERT INTO `beauty_salon`.`user` (`first_name`, `last_name`, `email`, `password`, `role_id`) VALUES ('Вера', 'Литвиненко', 'client2@gmail.com', 'client2', '3');
 
 
 -- Insert booking table
@@ -93,5 +102,3 @@ INSERT INTO `beauty_salon`.`timetable` (`calendar_id`, `timeslot_id`, `master_id
 INSERT INTO `beauty_salon`.`timetable` (`calendar_id`, `timeslot_id`, `master_id`) VALUES ('6', '12', '5');
 INSERT INTO `beauty_salon`.`timetable` (`calendar_id`, `timeslot_id`, `master_id`) VALUES ('6', '13', '3');
 
-
--- Insert

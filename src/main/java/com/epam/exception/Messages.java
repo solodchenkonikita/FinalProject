@@ -1,5 +1,11 @@
 package com.epam.exception;
 
+/**
+ * Holder for messages of exceptions.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class Messages {
 
     private Messages() {

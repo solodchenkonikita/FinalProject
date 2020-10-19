@@ -10,6 +10,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An implementation of UserDao interface.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class UserDaoImpl implements UserDao {
 
     private final static Logger LOG = Logger.getLogger(UserDaoImpl.class);

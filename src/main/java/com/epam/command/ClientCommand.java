@@ -18,6 +18,12 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Client command.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class ClientCommand extends Command {
 
     private static final long serialVersionUID = -6383097338420978815L;
@@ -41,6 +47,11 @@ public class ClientCommand extends Command {
         return result;
     }
 
+    /**
+     * Forward to client page.
+     *
+     * @return path to the client page.
+     */
     private String doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, AppException {
         LOG.debug("Start executing Command");
@@ -83,6 +94,11 @@ public class ClientCommand extends Command {
         return result;
     }
 
+    /**
+     * Redirect user after grading master or adding comment.
+     *
+     * @return path to the client page.
+     */
     private String doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, AppException {
         LOG.debug("Start executing Command");

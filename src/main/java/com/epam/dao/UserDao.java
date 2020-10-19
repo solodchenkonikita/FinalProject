@@ -8,9 +8,10 @@ import java.sql.Date;
 import java.util.List;
 
 /**
- * Work with user in database
+ * User dao interface.
  *
- * @author Nikita Solodchenko
+ * @author Solodchenko Nikita
+ *
  */
 public interface UserDao {
     /**
@@ -23,6 +24,7 @@ public interface UserDao {
     /**
      * Get user by email
      *
+     * @param connection connection to database.
      * @param email specified email.
      * @return user who was found in database.
      */
@@ -31,6 +33,7 @@ public interface UserDao {
     /**
      * Get user email by email
      *
+     * @param connection connection to database.
      * @param email specified email.
      * @return user email which was found in database.
      */
@@ -39,10 +42,18 @@ public interface UserDao {
     /**
      * Get all masters
      *
+     * @param connection connection to database.
      * @return list of user whose role is master.
      */
     List<User> findAllMasters(Connection connection) throws DBException;
 
+    /**
+     * Get users with booking by date
+     *
+     * @param connection connection to database.
+     * @param date specified date.
+     * @return list of user whose role is master.
+     */
     List<User> getUsersWithBookingByDate(Connection connection, Date date);
 
 }

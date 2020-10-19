@@ -1,5 +1,11 @@
 package com.epam.entity;
 
+/**
+ * Service entity.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class Service extends Entity {
 
     private static final long serialVersionUID = 4698591346848613263L;

@@ -19,6 +19,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Context listener.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 @WebListener
 public class ContextListener implements ServletContextListener {
 

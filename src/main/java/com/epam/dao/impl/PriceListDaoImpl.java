@@ -10,6 +10,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An implementation of PriceListDao interface.
+ *
+ * @author Solodchenko Nikita
+ *
+ */
 public class PriceListDaoImpl implements PriceListDao {
 
     private final static Logger LOG = Logger.getLogger(PriceListDaoImpl.class);
